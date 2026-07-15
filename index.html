@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light only">
+<meta name="theme-color" content="#FCFAF7">
+<meta name="supported-color-schemes" content="light">
+<title>Hafla — Dubai's party marketplace. The whole party, one tap.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=DM+Sans:wght@400;500;700&family=DM+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme:light only;
+  --cake:#FCFAF7; --cake2:#F4EDE6; --ink:#2B2125; --ink2:#6A5850;
+  --berry:#C43265; --berry-deep:#A32350; --gold:#A97C22; --gold-soft:#E2C88E;
+  --mint:#1F8F66; --line:rgba(43,33,37,.14);
+  --ease:cubic-bezier(.32,.72,0,1);
+  --sh:0 24px 60px rgba(43,33,37,.13);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;background:#FCFAF7}
+@media(prefers-color-scheme:dark){html,body{background:#FCFAF7;color:#2B2125}}
+body{font-family:"DM Sans",system-ui,sans-serif;background:var(--cake);color:var(--ink);line-height:1.6;overflow-x:hidden}
+h1,h2,h3,h4,.serif{font-family:"Fraunces",serif;font-weight:600;line-height:1.08;letter-spacing:-.015em}
+.mono{font-family:"DM Mono",monospace}
+.wrap{max-width:1120px;margin:0 auto;padding:0 22px}
+img{display:block}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--berry-deep)}
+.eyebrow::before{content:"";width:22px;height:2px;background:var(--berry);border-radius:2px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:15px 28px;border-radius:100px;border:none;font-family:"DM Sans";font-size:15.5px;font-weight:700;cursor:pointer;background:var(--ink);color:var(--cake);transition:transform .2s var(--ease),box-shadow .2s;box-shadow:0 12px 28px rgba(43,33,37,.22);text-decoration:none}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:scale(.97)}
+.btn.berry{background:var(--berry-deep);box-shadow:0 12px 26px rgba(163,35,80,.3)}
+.btn.ghost{background:transparent;color:var(--ink);box-shadow:none;border:1.5px solid var(--line)}
+.rev{opacity:0;transform:translateY(26px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.rev.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.rev{opacity:1;transform:none;transition:none}*{animation:none!important;transition:none!important}}
+.star{color:var(--gold)}
+.pillTag{font-size:11px;font-weight:700;letter-spacing:.06em;padding:5px 11px;border-radius:100px;background:#fff;border:1px solid var(--line);color:var(--ink2);display:inline-flex;align-items:center;gap:5px}
+.pillTag.hot{background:#FFFFFF;border-color:rgba(163,35,80,.4);color:var(--berry-deep)}
+
+/* ---------- nav ---------- */
+nav{position:sticky;top:0;z-index:60;background:rgba(252,250,247,.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+.navIn{display:flex;align-items:center;justify-content:space-between;height:66px}
+.logo{font-family:"Fraunces";font-size:26px;font-weight:700;letter-spacing:-.02em;text-decoration:none;color:var(--ink)}
+.logo i{font-style:normal;color:var(--berry);position:relative}
+.logo i::after{content:"";position:absolute;top:-4px;right:-7px;width:7px;height:7px;border-radius:50%;background:var(--gold)}
+.navLinks{display:flex;gap:24px;align-items:center}
+.navLinks a{text-decoration:none;color:var(--ink2);font-size:14.5px;font-weight:500}
+.navLinks a:hover{color:var(--berry-deep)}
+@media(max-width:780px){.navLinks a:not(.btn){display:none}}
+nav .btn{padding:10px 20px;font-size:14px}
+
+/* ---------- hero ---------- */
+.hero{padding:66px 0 70px;overflow:hidden}
+.heroGrid{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
+@media(max-width:860px){.heroGrid{grid-template-columns:1fr;gap:40px}}
+.hero h1{font-size:clamp(42px,6.4vw,72px);font-weight:700;margin-top:20px}
+.hero h1 em{font-style:italic;font-weight:600;color:var(--berry-deep);position:relative;white-space:nowrap}
+.hero h1 em svg{position:absolute;left:0;right:0;bottom:-6px;width:100%;height:13px}
+.hero p.lead{max-width:460px;margin-top:22px;font-size:17.5px;color:var(--ink2)}
+.heroCtas{display:flex;gap:14px;margin-top:32px;flex-wrap:wrap}
+.heroProof{display:flex;gap:22px;margin-top:38px;flex-wrap:wrap}
+.heroProof div b{font-family:"Fraunces";font-size:24px;display:block}
+.heroProof div span{font-size:12.5px;color:var(--ink2)}
+.collage{position:relative;height:480px}
+@media(max-width:860px){.collage{height:400px}}
+.polaroid{position:absolute;background:#fff;padding:10px 10px 34px;border-radius:14px;box-shadow:var(--sh);transition:transform .5s var(--ease)}
+.polaroid img{width:100%;height:100%;object-fit:cover;border-radius:8px}
+.polaroid figcaption{position:absolute;bottom:9px;left:0;right:0;text-align:center;font-family:"Fraunces";font-style:italic;font-size:13px;color:var(--ink2)}
+.polaroid.p1{width:57%;height:62%;top:2%;left:0;transform:rotate(-4deg);z-index:2}
+.polaroid.p2{width:48%;height:52%;top:26%;right:0;transform:rotate(3.5deg);z-index:3}
+.polaroid.p3{width:42%;height:44%;bottom:0;left:14%;transform:rotate(-1.5deg);z-index:1}
+.polaroid:hover{transform:rotate(0) scale(1.03);z-index:5}
+.collage .floatTag{position:absolute;z-index:6;background:var(--ink);color:var(--cake);font-size:12.5px;font-weight:700;padding:9px 15px;border-radius:100px;box-shadow:0 10px 26px rgba(43,33,37,.3);animation:bob 5s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-9px)}}
+
+/* ---------- marquee gallery ---------- */
+.marquee{padding:10px 0 0;overflow:hidden;position:relative}
+.mTrack{display:flex;gap:14px;width:max-content;animation:slide 36s linear infinite}
+.marquee:hover .mTrack{animation-play-state:paused}
+@keyframes slide{to{transform:translateX(-50%)}}
+.mTrack img{width:230px;height:150px;object-fit:cover;border-radius:16px}
+.mTrack .mCap{position:relative}
+.mTrack .mCap span{position:absolute;bottom:8px;left:8px;font-size:11px;font-weight:700;background:rgba(252,250,247,.95);color:var(--ink);padding:4px 10px;border-radius:100px}
+
+/* ---------- bundles ---------- */
+.bundles{padding:86px 0 30px}
+.secHead{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:34px}
+.secHead h2{font-size:clamp(30px,4.6vw,46px);margin-top:14px}
+.secHead p{color:var(--ink2);max-width:400px;font-size:15.5px}
+.bunGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media(max-width:860px){.bunGrid{grid-template-columns:1fr}}
+.bun{background:#fff;border-radius:26px;overflow:hidden;border:1px solid var(--line);transition:transform .3s var(--ease),box-shadow .3s;cursor:pointer;position:relative}
+.bun:hover{transform:translateY(-7px);box-shadow:var(--sh)}
+.bun .img{height:190px;position:relative;overflow:hidden}
+.bun .img img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.bun:hover .img img{transform:scale(1.06)}
+.bun .img .pillTag{position:absolute;top:14px;left:14px}
+.bun .body{padding:20px 22px 22px}
+.bun h3{font-size:21px}
+.bun .inc{color:var(--ink2);font-size:13px;margin-top:7px;line-height:1.55}
+.bun .row{display:flex;justify-content:space-between;align-items:center;margin-top:16px;padding-top:15px;border-top:1px dashed var(--line)}
+.bun .row .pr{font-family:"DM Mono";font-weight:700;font-size:17px}
+.bun .row .pr small{display:block;font-family:"DM Sans";font-weight:500;font-size:11px;color:var(--ink2)}
+.bun .row span.go{font-size:13.5px;font-weight:700;color:var(--berry-deep)}
+
+/* ---------- split ---------- */
+.split{padding:76px 0}
+.splitGrid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:34px}
+@media(max-width:760px){.splitGrid{grid-template-columns:1fr}}
+.panel{border-radius:26px;padding:30px 28px;position:relative;overflow:hidden}
+.panel.old{background:#F1EAE3;border:1px dashed rgba(43,33,37,.28)}
+.panel.new{background:#fff;color:var(--ink);border:1.5px solid rgba(163,35,80,.4)}
+.panel h3{font-size:23px;margin-bottom:16px}
+.chatRow{display:flex;gap:9px;align-items:center;background:#fff;border-radius:12px;padding:9px 13px;margin-bottom:8px;font-size:13px;color:var(--ink2);box-shadow:0 2px 8px rgba(43,33,37,.06)}
+.chatRow .bub{width:26px;height:26px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:12px;color:#fff;font-weight:700}
+.panel.new .bigTick{width:56px;height:56px;border-radius:19px;background:var(--berry-deep);display:flex;align-items:center;justify-content:center;margin-bottom:18px;box-shadow:0 10px 26px rgba(163,35,80,.35)}
+.panel.new .bigTick svg{width:25px;height:25px;stroke:#fff;stroke-width:2.6;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.panel.new p{color:var(--ink2);font-size:15px}
+.panel .tag{position:absolute;top:20px;right:20px;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:5px 11px;border-radius:100px}
+.panel.old .tag{background:rgba(43,33,37,.1);color:var(--ink2)}
+.panel.new .tag{background:#FBF2F5;color:var(--berry-deep)}
+
+/* ---------- builder ---------- */
+#builder{padding:70px 0 92px;background:linear-gradient(180deg,var(--cake) 0%,var(--cake2) 14%,var(--cake2) 86%,var(--cake) 100%)}
+.builderHead{text-align:center;max-width:620px;margin:0 auto 38px}
+.builderHead h2{font-size:clamp(32px,5.2vw,52px);margin-top:16px}
+.builderHead p{color:var(--ink2);margin-top:14px;font-size:16px}
+.bCard{background:#fff;border-radius:32px;box-shadow:0 32px 90px rgba(43,33,37,.15);overflow:hidden;border:1px solid rgba(43,33,37,.06)}
+.bPad{padding:28px 32px}
+@media(max-width:640px){.bPad{padding:22px 18px}}
+.bLabel{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink2);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.bLabel .stepNo{width:20px;height:20px;border-radius:50%;background:var(--ink);color:#fff;font-size:10.5px;display:inline-flex;align-items:center;justify-content:center;letter-spacing:0}
+.chips{display:flex;gap:9px;flex-wrap:wrap}
+.chip{padding:10px 17px;border-radius:100px;border:1.5px solid var(--line);background:#fff;font-family:"DM Sans";font-size:14px;font-weight:600;color:var(--ink2);cursor:pointer;transition:all .22s var(--ease)}
+.chip.on{color:#fff;border-color:transparent;background:var(--berry-deep);transform:scale(1.03);box-shadow:0 5px 14px rgba(163,35,80,.28)}
+.chip.gold.on{background:var(--ink)}
+.guestRow{display:flex;align-items:center;gap:18px;margin-top:8px;flex-wrap:wrap}
+.guestRow input[type=range]{flex:1;min-width:170px;accent-color:var(--berry);height:4px}
+.guestCount{font-family:"Fraunces";font-size:29px;font-weight:700;min-width:100px}
+.guestCount small{font-family:"DM Sans";font-size:12.5px;color:var(--ink2);font-weight:500;display:block;margin-top:-4px}
+.hrDash{border:none;border-top:1.5px dashed var(--line);margin:0 32px}
+@media(max-width:640px){.hrDash{margin:0 18px}}
+.catBlock{margin-bottom:26px}
+.catHead{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px}
+.catHead .bLabel{margin:0}
+.catHead .skip{font-size:12.5px;color:var(--ink2);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.optRow{display:grid;grid-template-columns:repeat(3,1fr);gap:11px}
+@media(max-width:760px){.optRow{grid-template-columns:1fr}}
+.vopt{border:1.5px solid var(--line);border-radius:18px;padding:13px 14px;cursor:pointer;transition:all .22s var(--ease);background:#fff;position:relative}
+.vopt:hover{border-color:rgba(163,35,80,.4)}
+.vopt.on{border-color:var(--berry-deep);background:#FBF2F5;box-shadow:0 8px 20px rgba(163,35,80,.12)}
+.vopt b{font-size:14px;display:block;letter-spacing:-.01em;padding-right:20px}
+.vopt .meta{font-size:12px;color:var(--ink2);margin-top:3px}
+.vopt .meta .star{font-weight:700}
+.vopt .foot{display:flex;justify-content:space-between;align-items:center;margin-top:9px}
+.vopt .pr{font-family:"DM Mono";font-size:13.5px;font-weight:700}
+.vopt .hint{font-size:10.5px;color:var(--ink2)}
+.vopt .check{position:absolute;top:11px;right:11px;width:19px;height:19px;border-radius:50%;border:1.5px solid var(--line);transition:all .2s}
+.vopt.on .check{background:var(--berry);border-color:var(--berry);box-shadow:inset 0 0 0 3px #FBF2F5}
+.addGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:11px}
+@media(max-width:860px){.addGrid{grid-template-columns:repeat(2,1fr)}}
+.addon{border:1.5px solid var(--line);border-radius:16px;padding:13px;cursor:pointer;text-align:center;transition:all .22s var(--ease);background:#fff;position:relative}
+.addon .em{font-size:24px}
+.addon b{display:block;font-size:12.5px;margin-top:6px;letter-spacing:-.01em}
+.addon .pr{font-family:"DM Mono";font-size:11.5px;color:var(--ink2);margin-top:2px}
+.addon.on{border-color:var(--gold);background:#FBF6EA;box-shadow:0 8px 20px rgba(169,124,34,.14)}
+.addon .check{position:absolute;top:-7px;right:-7px;width:22px;height:22px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;opacity:0;transform:scale(.4);transition:all .25s var(--ease)}
+.addon.on .check{opacity:1;transform:none}
+.addon .check svg{width:10px;height:10px;stroke:#fff;stroke-width:3.4;fill:none;stroke-linecap:round;stroke-linejoin:round}
+/* receipt */
+.receipt{background:var(--cake2);color:var(--ink);border-radius:26px;margin:6px 32px 30px;padding:24px 26px;border:1.5px solid var(--line)}
+@media(max-width:640px){.receipt{margin:6px 18px 24px}}
+.receipt .rHead{font-family:"Fraunces";font-size:19px;display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.receipt .rHead{color:var(--ink)}
+.receipt .rHead span{font-family:"DM Sans";font-size:12px;color:var(--ink2);font-weight:500}
+.rLines{margin:12px 0 6px}
+.rLine{display:flex;justify-content:space-between;gap:14px;font-size:13.5px;padding:7px 0;border-bottom:1px dashed rgba(43,33,37,.16)}
+.rLine span{color:var(--ink)}
+.rLine b{font-family:"DM Mono";font-weight:500;white-space:nowrap}
+.rLine.empty{color:var(--ink2);border:none;font-size:13px;justify-content:center;padding:14px 0}
+.rTot{display:flex;justify-content:space-between;align-items:flex-end;margin-top:14px}
+.rTot small{font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink2);font-weight:700;display:block}
+.rTot b{font-family:"DM Mono";font-size:31px;letter-spacing:-.02em;color:var(--berry-deep)}
+.rTot .per{font-size:12px;color:var(--ink2);text-align:right}
+.receipt .btn{width:100%;margin-top:18px}
+.escrow{display:flex;gap:8px;align-items:center;font-size:12px;color:var(--ink2);margin-top:13px;justify-content:center;text-align:center}
+.escrow svg{width:13px;height:13px;stroke:var(--gold);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+.bookedState{padding:58px 30px;text-align:center;display:none}
+.bookedState.show{display:block}
+.bookedState h3{font-size:31px;margin-top:14px}
+.bookedState p{color:var(--ink2);margin-top:10px;max-width:420px;margin-left:auto;margin-right:auto;font-size:15px}
+.confettiBurst{position:fixed;inset:0;pointer-events:none;z-index:100;overflow:hidden}
+.pc{position:absolute;width:10px;height:10px;top:-14px;animation:drop linear forwards}
+@keyframes drop{to{transform:translateY(105vh) rotate(720deg)}}
+
+/* ---------- AI designer ---------- */
+.aiCard{max-width:760px;margin:0 auto 26px;background:#fff;border-radius:24px;padding:24px 26px;border:1.5px solid var(--line);box-shadow:0 18px 50px rgba(43,33,37,.1);position:relative;overflow:hidden}
+.aiCard::before{content:"";position:absolute;inset:0;padding:1.5px;border-radius:24px;background:linear-gradient(120deg,var(--berry),var(--gold),var(--berry));-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+.aiHead{display:flex;align-items:center;gap:10px;font-family:"Fraunces";font-size:19px;font-weight:600}
+.aiHead .spark{width:30px;height:30px;border-radius:10px;background:linear-gradient(135deg,var(--berry),var(--gold));display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
+.aiHead .demo{margin-left:auto;font-family:"DM Sans";font-size:10.5px;font-weight:700;letter-spacing:.1em;color:var(--ink2);border:1px solid var(--line);padding:4px 10px;border-radius:100px}
+.aiCard p.hint{color:var(--ink2);font-size:13.5px;margin-top:6px}
+.aiRow{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+.aiRow textarea{flex:1;min-width:240px;border:1.5px solid var(--line);border-radius:15px;padding:13px 15px;font-family:"DM Sans";font-size:14.5px;color:var(--ink);resize:none;outline:none;background:var(--cake)}
+.aiRow textarea:focus{border-color:var(--berry)}
+.aiRow .btn{padding:13px 22px;font-size:14.5px}
+.aiOut{display:none;margin-top:14px;padding:13px 16px;border-radius:14px;background:#FBF6EA;border:1px solid rgba(169,124,34,.3);font-size:13.5px;color:var(--ink)}
+.aiOut.show{display:block}
+.aiOut b{color:var(--berry-deep)}
+.aiThinking{display:inline-flex;gap:4px;align-items:center}
+.aiThinking i{width:5px;height:5px;border-radius:50%;background:var(--berry);animation:th 1s ease-in-out infinite}
+.aiThinking i:nth-child(2){animation-delay:.16s}.aiThinking i:nth-child(3){animation-delay:.32s}
+@keyframes th{50%{transform:translateY(-4px);opacity:.5}}
+.aiChips{display:flex;gap:7px;flex-wrap:wrap;margin-top:11px}
+.aiChips button{font-size:12px;font-weight:600;color:var(--ink2);background:var(--cake2);border:none;border-radius:100px;padding:7px 13px;cursor:pointer;font-family:"DM Sans"}
+.aiChips button:hover{color:var(--berry-deep)}
+
+/* ---------- vendors featured ---------- */
+.featured{padding:84px 0 40px}
+.venGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media(max-width:860px){.venGrid{grid-template-columns:1fr}}
+.ven{background:#fff;border-radius:24px;overflow:hidden;border:1px solid var(--line);transition:transform .3s var(--ease),box-shadow .3s}
+.ven:hover{transform:translateY(-6px);box-shadow:var(--sh)}
+.ven .img{height:150px;overflow:hidden}
+.ven .img img{width:100%;height:100%;object-fit:cover}
+.ven .body{padding:16px 19px 19px}
+.ven h4{font-size:17px;display:flex;align-items:center;gap:7px}
+.ven .vBadge{width:16px;height:16px;border-radius:50%;background:var(--mint);display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+.ven .vBadge svg{width:8px;height:8px;stroke:#fff;stroke-width:3.6;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.ven .meta{font-size:12.5px;color:var(--ink2);margin-top:4px}
+.ven .stats{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+
+/* ---------- testimonials ---------- */
+.testi{padding:70px 0}
+.tGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media(max-width:860px){.tGrid{grid-template-columns:1fr}}
+.tCard{background:#fff;border:1px solid var(--line);border-radius:24px;padding:26px;position:relative}
+.tCard .q{font-family:"Fraunces";font-style:italic;font-size:17px;line-height:1.5}
+.tCard .who{display:flex;gap:12px;align-items:center;margin-top:18px}
+.tCard .av{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:15px}
+.tCard .who b{font-size:14px;display:block}
+.tCard .who small{color:var(--ink2);font-size:12px}
+.tCard .mark{position:absolute;top:18px;right:24px;font-family:"Fraunces";font-size:52px;color:var(--cake2);line-height:1}
+
+/* ---------- vendor pitch ---------- */
+.vendors{background:#fff;color:var(--ink);padding:88px 0;border-top:1px solid var(--line);overflow:hidden;position:relative}
+.vendors .eyebrow{color:var(--berry-deep)}
+.vendors .eyebrow::before{background:var(--berry)}
+.vGrid2{display:grid;grid-template-columns:1.05fr .95fr;gap:52px;align-items:center}
+@media(max-width:820px){.vGrid2{grid-template-columns:1fr}}
+.vendors h2{font-size:clamp(30px,4.6vw,46px);margin-top:16px}
+.vendors p.vl{color:var(--ink2);margin-top:16px;font-size:16px;max-width:440px}
+.vList{margin-top:26px;display:flex;flex-direction:column;gap:13px}
+.vList div{display:flex;gap:12px;align-items:flex-start;font-size:15px;color:var(--ink)}
+.vList svg{width:18px;height:18px;stroke:var(--gold);stroke-width:2.2;fill:none;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;margin-top:3px}
+.payout{background:var(--cake2);border:1.5px solid var(--line);border-radius:28px;padding:28px}
+.payout .pRow{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid rgba(43,33,37,.12);font-size:14.5px}
+.payout .pRow:last-child{border:none}
+.payout .pRow b{font-family:"DM Mono";font-weight:500}
+.payout .badge{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);background:rgba(169,124,34,.12);padding:5px 12px;border-radius:100px}
+
+/* ---------- faq ---------- */
+.faq{padding:84px 0}
+.faqList{max-width:720px;margin:34px auto 0}
+.qa{border-bottom:1px solid var(--line)}
+.qa button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:16px;background:none;border:none;font-family:"Fraunces";font-size:18px;font-weight:600;color:var(--ink);text-align:left;padding:20px 4px;cursor:pointer}
+.qa .plus{font-size:24px;color:var(--berry);transition:transform .3s var(--ease);flex-shrink:0;font-family:"DM Sans";font-weight:400}
+.qa.open .plus{transform:rotate(45deg)}
+.qa .a{max-height:0;overflow:hidden;transition:max-height .4s var(--ease)}
+.qa .a p{padding:0 4px 22px;color:var(--ink2);font-size:15px;max-width:640px}
+
+/* ---------- finale ---------- */
+.finale{background:var(--cake2);color:var(--ink);padding:20px 0 100px;text-align:center}
+.statRow{display:flex;justify-content:center;gap:56px;flex-wrap:wrap;padding:44px 0 64px;border-top:1px solid var(--line)}
+.stat b{font-family:"Fraunces";font-size:42px;font-weight:700;display:block}
+.stat b i{font-style:normal;color:var(--berry-deep)}
+.stat span{font-size:13px;color:var(--ink2);letter-spacing:.06em}
+.finale h2{font-size:clamp(34px,6vw,60px);max-width:640px;margin:0 auto}
+.finale h2 em{font-style:italic;color:var(--berry-deep)}
+.finale .btn{margin-top:34px}
+footer{background:var(--cake2);color:var(--ink2);padding:28px 0 40px;font-size:13px;border-top:1px solid var(--line)}
+.footIn{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
+</style>
+</head>
+<body>
+
+<nav><div class="wrap navIn">
+  <a class="logo" href="#">hafl<i>a</i></a>
+  <div class="navLinks">
+    <a href="#bundles">Ready-made parties</a>
+    <a href="#builder">Build your own</a>
+    <a href="#vendors">Vendors</a>
+    <a href="#faq">FAQ</a>
+    <a href="#builder" class="btn berry">Start planning</a>
+  </div>
+</div></nav>
+
+<!-- HERO -->
+<header class="hero"><div class="wrap heroGrid">
+  <div>
+    <span class="eyebrow rev">Dubai's party marketplace</span>
+    <h1 class="rev">The whole party.<br><em>One tap.<svg viewBox="0 0 200 14" preserveAspectRatio="none"><path d="M3 10 Q60 3 100 8 T197 6" fill="none" stroke="#A97C22" stroke-width="4" stroke-linecap="round"/></svg></em></h1>
+    <p class="lead rev">Venue, entertainer, cake, decor, photographer, catering — choose each piece from Dubai's best vendors, pay once, and show up to your own kid's party as a guest.</p>
+    <div class="heroCtas rev">
+      <a class="btn berry" href="#builder">Build your party</a>
+      <a class="btn ghost" href="#bundles">See ready-made parties</a>
+    </div>
+    <div class="heroProof rev">
+      <div><b>140+</b><span>vetted vendors</span></div>
+      <div><b>4.9<span class="star"> ★</span></b><span>average party rating</span></div>
+      <div><b>100%</b><span>money-protected bookings</span></div>
+    </div>
+  </div>
+  <div class="collage rev">
+    <figure class="polaroid p1"><img src="https://images.pexels.com/photos/7600383/pexels-photo-7600383.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Kids gathered around a birthday cake" onerror="this.parentElement.style.display='none'"><figcaption>Liya turns six · Al Barari</figcaption></figure>
+    <figure class="polaroid p2"><img src="https://images.pexels.com/photos/8104171/pexels-photo-8104171.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Girl blowing out candles surrounded by balloons" onerror="this.parentElement.style.display='none'"><figcaption>Make a wish · Jumeirah</figcaption></figure>
+    <figure class="polaroid p3"><img src="https://images.pexels.com/photos/7423744/pexels-photo-7423744.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Three kids in party hats with balloons" onerror="this.parentElement.style.display='none'"><figcaption>Squad assembled · JLT</figcaption></figure>
+    <span class="floatTag" style="top:6%;right:4%">Booked in 4 min</span>
+    <span class="floatTag" style="bottom:10%;right:20%;animation-delay:1.6s;background:var(--berry-deep)">Vendors paid after delivery</span>
+  </div>
+</div></header>
+
+<!-- MARQUEE -->
+<div class="marquee" aria-hidden="true"><div class="mTrack" id="mTrack"></div></div>
+
+<!-- BUNDLES -->
+<section class="bundles" id="bundles"><div class="wrap">
+  <div class="secHead">
+    <div><span class="eyebrow rev">Most booked this month</span><h2 class="rev">Ready-made parties</h2></div>
+    <p class="rev">Assembled from our top-rated vendors and booked dozens of times. Tap one to load it into the builder and make it yours.</p>
+  </div>
+  <div class="bunGrid" id="bunGrid"></div>
+</div></section>
+
+<!-- BEFORE / AFTER -->
+<section class="split"><div class="wrap">
+  <span class="eyebrow rev">Why Hafla exists</span>
+  <div class="splitGrid">
+    <div class="panel old rev">
+      <span class="tag">The old way</span>
+      <h3>Eleven chats.<br>One exhausted mom.</h3>
+      <div class="chatRow"><span class="bub" style="background:#9C7A93">V</span>Venue: "Prices on DM, madam"</div>
+      <div class="chatRow"><span class="bub" style="background:#B08A45">C</span>Cake lady: seen, no reply since Tuesday</div>
+      <div class="chatRow"><span class="bub" style="background:#7A9E8B">M</span>Magician: "Cash on the day, please"</div>
+      <div class="chatRow"><span class="bub" style="background:#8A8AB8">B</span>Balloon guy: sent the wrong theme. Twice.</div>
+      <div class="chatRow"><span class="bub" style="background:#B87878">P</span>Photographer: cancelled Friday 8am</div>
+    </div>
+    <div class="panel new rev" style="transition-delay:.12s">
+      <span class="tag">With Hafla</span>
+      <div class="bigTick"><svg viewBox="0 0 24 24"><path d="M4.5 12.5l5 5 10-11"/></svg></div>
+      <h3>One cart. One payment.<br>One person accountable.</h3>
+      <p>Every piece of the party is a bookable product with a fixed price and real reviews. You pay Hafla once — vendors are paid after they deliver. Your date locks across every vendor instantly. If anyone ghosts, it's our problem, not yours.</p>
+    </div>
+  </div>
+</div></section>
+
+<!-- BUILDER -->
+<section id="builder"><div class="wrap">
+  <div class="builderHead rev">
+    <span class="eyebrow" style="justify-content:center">The party builder</span>
+    <h2>Build it exactly your way</h2>
+    <p>Every option below is a real listing format — fixed price, real rating, instant date-lock. Pick one per category, stack the extras, watch the receipt build itself.</p>
+  </div>
+  <div class="aiCard rev">
+    <div class="aiHead"><span class="spark">✦</span>Hafla AI — describe it, we build it<span class="demo">DEMO</span></div>
+    <p class="hint">Tell it about your kid, the guest count and your budget. It picks the theme, chooses vendors, and fits everything to your number.</p>
+    <div class="aiRow">
+      <textarea id="aiInput" rows="2" placeholder="e.g. My daughter turns 6, she's obsessed with mermaids. Around 30 kids, budget AED 8,000."></textarea>
+      <button class="btn berry" id="aiBtn" onclick="aiDesign()">Design my party</button>
+    </div>
+    <div class="aiChips">
+      <button onclick="aiFill('My son turns 7, loves superheroes. 35 kids, budget AED 9,000')">Superhero, 35 kids, 9k</button>
+      <button onclick="aiFill('Unicorn party for my daughter, 20 kids, keep it around AED 5,000')">Unicorn, 20 kids, 5k</button>
+      <button onclick="aiFill('Football birthday, 40 boys, budget 12000')">Football, 40 kids, 12k</button>
+    </div>
+    <div class="aiOut" id="aiOut"></div>
+  </div>
+  <div class="bCard rev">
+    <div id="builderBody">
+      <div class="bPad">
+        <div class="bLabel"><span class="stepNo">1</span>Theme</div>
+        <div class="chips" id="themes"></div>
+      </div>
+      <hr class="hrDash">
+      <div class="bPad" style="display:grid;grid-template-columns:1fr 1fr;gap:26px">
+        <div style="grid-column:1/-1">
+          <div class="bLabel"><span class="stepNo">2</span>Guests</div>
+          <div class="guestRow">
+            <input type="range" min="10" max="80" value="25" id="guests" aria-label="Number of guests">
+            <div class="guestCount"><span id="gNum">25</span><small>little guests</small></div>
+          </div>
+        </div>
+        <div>
+          <div class="bLabel"><span class="stepNo">3</span>Date</div>
+          <div class="chips" id="dates"></div>
+        </div>
+        <div>
+          <div class="bLabel"><span class="stepNo">4</span>Area</div>
+          <div class="chips" id="areas"></div>
+        </div>
+      </div>
+      <hr class="hrDash">
+      <div class="bPad">
+        <div class="bLabel" style="margin-bottom:20px"><span class="stepNo">5</span>Choose your vendors — one per category</div>
+        <div id="cats"></div>
+        <div class="catBlock">
+          <div class="catHead"><div class="bLabel" style="margin:0"><span class="stepNo">6</span>Extras that make it legendary</div></div>
+          <div class="addGrid" id="addons"></div>
+        </div>
+      </div>
+      <div class="receipt">
+        <div class="rHead">Your party <span id="rMeta"></span></div>
+        <div class="rLines" id="rLines"></div>
+        <div class="rTot">
+          <div><small>Total, all-in</small><b id="total">AED 0</b></div>
+          <div class="per" id="perGuest"></div>
+        </div>
+        <button class="btn berry" id="bookBtn" onclick="book()">Book it — pay once</button>
+        <div class="escrow"><svg viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Held safely by Hafla. Every vendor is paid the morning after your party.</div>
+      </div>
+    </div>
+    <div class="bookedState" id="bookedState">
+      <div style="font-size:54px">🎂</div>
+      <h3 id="bookedTitle">Party booked.</h3>
+      <p id="bookedSub"></p>
+      <p style="margin-top:8px;font-size:13.5px;color:var(--gold)">In the real app: a live party timeline, vendor arrival tracking, group RSVP link, and one tap to rebook next year.</p>
+      <button class="btn ghost" style="margin-top:24px" onclick="resetBuilder()">Plan another one</button>
+    </div>
+  </div>
+</div></section>
+
+<!-- FEATURED VENDORS -->
+<section class="featured"><div class="wrap">
+  <div class="secHead">
+    <div><span class="eyebrow rev">Vetted in person</span><h2 class="rev">Vendors moms fight over</h2></div>
+    <p class="rev">Every vendor passes an in-person quality check, holds a trade licence, and keeps a 4.5★ minimum to stay listed.</p>
+  </div>
+  <div class="venGrid" id="venGrid"></div>
+</div></section>
+
+<!-- TESTIMONIALS -->
+<section class="testi"><div class="wrap">
+  <span class="eyebrow rev">School-gate approved</span>
+  <h2 class="rev" style="font-size:clamp(30px,4.6vw,46px);margin-top:14px">What the moms say</h2>
+  <div class="tGrid" style="margin-top:34px" id="tGrid"></div>
+</div></section>
+
+<!-- VENDOR PITCH -->
+<section class="vendors" id="vendors"><div class="wrap vGrid2">
+  <div>
+    <span class="eyebrow rev">For vendors</span>
+    <h2 class="rev">List once.<br>Get booked while you sleep.</h2>
+    <p class="vl rev">Stop quoting the same package forty times a week on WhatsApp. Publish it once as a bookable product and let Dubai's busiest parents find you.</p>
+    <div class="vList rev">
+      <div><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-10"/></svg>Guaranteed payment the morning after — no more chasing transfers</div>
+      <div><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-10"/></svg>Your calendar syncs — double-bookings become impossible</div>
+      <div><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-10"/></svg>Reviews build your rank — great vendors rise, ghosts disappear</div>
+      <div><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-10"/></svg>Zero listing fees — Hafla earns only when you do</div>
+    </div>
+    <a class="btn rev" style="margin-top:30px;background:var(--gold);color:var(--ink);box-shadow:0 12px 30px rgba(169,124,34,.3)" href="#">Apply as a vendor</a>
+  </div>
+  <div class="payout rev" style="transition-delay:.12s">
+    <span class="badge">A booking, settled</span>
+    <div class="pRow" style="margin-top:14px"><span>Princess party · 25 guests · Al Barari</span><b>AED 9,890</b></div>
+    <div class="pRow"><span>Sunshine Garden Venue</span><b>AED 3,120</b></div>
+    <div class="pRow"><span>Magic by Karim</span><b>AED 1,190</b></div>
+    <div class="pRow"><span>Velvet Crumb Cakes</span><b>AED 700</b></div>
+    <div class="pRow"><span>Arch &amp; Co Styling</span><b>AED 1,530</b></div>
+    <div class="pRow"><span>Little Moments Studio</span><b>AED 940</b></div>
+    <div class="pRow"><span>Mini Feast Catering</span><b>AED 930</b></div>
+    <div class="pRow"><span>Hafla platform</span><b style="color:var(--gold)">AED 1,480</b></div>
+    <div class="pRow" style="font-size:12.5px;color:var(--ink2)"><span>Paid out the morning after the party</span><b style="color:var(--mint);font-family:'DM Sans'">Settled</b></div>
+  </div>
+</div></section>
+
+<!-- FAQ -->
+<section class="faq" id="faq"><div class="wrap">
+  <div style="text-align:center"><span class="eyebrow rev" style="justify-content:center">Questions, answered</span>
+  <h2 class="rev" style="font-size:clamp(30px,4.6vw,46px);margin-top:14px">Before you ask</h2></div>
+  <div class="faqList" id="faqList"></div>
+</div></section>
+
+<!-- FINALE -->
+<section class="finale">
+  <div class="wrap">
+    <div class="statRow">
+      <div class="stat rev"><b>AED <i>10k+</i></b><span>average Dubai kids' party spend</span></div>
+      <div class="stat rev" style="transition-delay:.08s"><b><i>52</i> weekends</b><span>of parties, every single year</span></div>
+      <div class="stat rev" style="transition-delay:.16s"><b><i>0</i></b><span>WhatsApp threads required</span></div>
+    </div>
+    <h2 class="rev">Hafla means party.<br><em>We mean it.</em></h2>
+    <a class="btn berry rev" href="#builder">Build your first party</a>
+  </div>
+</section>
+
+<footer><div class="wrap footIn">
+  <span class="serif" style="font-size:20px;color:var(--ink)">hafl<span style="color:var(--berry)">a</span></span>
+  <span>Dubai · Abu Dhabi (soon) · hello@hafla.app</span>
+  <span>© 2026 Hafla. Concept prototype. Photos: Pexels.</span>
+</div></footer>
+
+<div class="confettiBurst" id="burst"></div>
+
+<script>
+const $=id=>document.getElementById(id);
+const px=(id,w)=>`https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=${w||700}`;
+
+/* ================= DATA ================= */
+const themes=["Princess","Superhero","Space","Jungle Safari","Unicorn","Football","Under the Sea","Gaming"];
+const areas=["Al Barari","Jumeirah","Dubai Hills","Arabian Ranches","JLT / Marina","Mirdif"];
+const cats=[
+ {k:"venue",n:"Venue",opts:[
+   {n:"The Play Loft",m:"Indoor · JLT · up to 40 kids",r:4.8,rv:212,p:2400,per:14,tag:"Great value"},
+   {n:"Sunshine Garden",m:"Garden · Al Barari · shaded lawn",r:4.9,rv:167,p:3200,per:18,tag:"Most booked"},
+   {n:"Marina Kids Ballroom",m:"Private hall · Marina · AC + stage",r:4.9,rv:98,p:4500,per:24,tag:"Premium"}]},
+ {k:"show",n:"Entertainment",opts:[
+   {n:"Magic by Karim",m:"60-min magic + games host",r:4.9,rv:340,p:950,per:0,tag:"Crowd favourite"},
+   {n:"Science Circus",m:"90-min mad-science show, 2 hosts",r:4.8,rv:189,p:1400,per:0,tag:"Ages 6+"},
+   {n:"Hero Academy",m:"2-hr themed show + training camp",r:5.0,rv:76,p:1800,per:0,tag:"Full takeover"}]},
+ {k:"cake",n:"Cake",opts:[
+   {n:"Sugar & Co",m:"Single-tier themed, serves all",r:4.7,rv:410,p:380,per:9,tag:"Great value"},
+   {n:"Velvet Crumb",m:"Two-tier custom + 20 cupcakes",r:4.9,rv:265,p:520,per:12,tag:"Most booked"},
+   {n:"La Petite Pâtisserie",m:"Sculpted showpiece cake",r:5.0,rv:88,p:750,per:14,tag:"Showstopper"}]},
+ {k:"decor",n:"Decor & styling",opts:[
+   {n:"Paper & Pastel",m:"Balloon garland + table styling",r:4.8,rv:198,p:1200,per:8,tag:"Great value"},
+   {n:"Arch & Co",m:"Full arch, backdrop + signage",r:4.9,rv:154,p:1800,per:11,tag:"Most booked"},
+   {n:"Ballon d'Or",m:"Ceiling install + photo corner",r:4.9,rv:71,p:2600,per:13,tag:"Jaw-dropper"}]},
+ {k:"photo",n:"Photography",opts:[
+   {n:"Little Moments",m:"90 min · 100+ edited photos",r:4.8,rv:230,p:700,per:0,tag:"Great value"},
+   {n:"Golden Hour Kids",m:"2 hrs · photos + 60-sec reel",r:4.9,rv:176,p:1100,per:0,tag:"Most booked"},
+   {n:"Lens & Laughter",m:"3 hrs · 2 shooters + same-day teaser",r:5.0,rv:64,p:1600,per:0,tag:"Full story"}]},
+ {k:"food",n:"Kids' catering",opts:[
+   {n:"The Sandwich Society",m:"Boxes: sandwich, fruit, juice",r:4.7,rv:301,p:150,per:32,tag:"Great value"},
+   {n:"Mini Feast",m:"Hot buffet + dessert table",r:4.9,rv:187,p:250,per:44,tag:"Most booked"},
+   {n:"Bento Kids",m:"Themed bento + allergy menus",r:4.9,rv:93,p:200,per:58,tag:"Instagram bait"}]}];
+const addons=[
+ {k:"face",e:"🎨",n:"Face painting",p:450,per:0},
+ {k:"bounce",e:"🏰",n:"Bouncy castle",p:700,per:0},
+ {k:"candy",e:"🍭",n:"Candy cart",p:350,per:8},
+ {k:"booth",e:"📸",n:"Photo booth",p:900,per:0},
+ {k:"mascot",e:"🦸",n:"Mascot visit",p:600,per:0},
+ {k:"balloonist",e:"🎈",n:"Balloon artist",p:400,per:0},
+ {k:"popcorn",e:"🍿",n:"Popcorn & floss",p:500,per:0},
+ {k:"gifts",e:"🎁",n:"Return gifts",p:0,per:18}];
+const bundles=[
+ {img:"8104166",tag:"Most booked",n:"The Royal Wish",inc:"Sunshine Garden · Magic by Karim · Velvet Crumb two-tier · Arch & Co styling · Golden Hour photos",note:"25 guests, Princess theme",sel:{venue:1,show:0,cake:1,decor:1,photo:1,food:-1},adds:["gifts"],theme:0},
+ {img:"7099954",tag:"High energy",n:"Hero HQ",inc:"The Play Loft · Hero Academy takeover · Sugar & Co cake · Paper & Pastel decor · bouncy castle + mascot",note:"30 guests, Superhero theme",sel:{venue:0,show:2,cake:0,decor:0,photo:0,food:-1},adds:["bounce","mascot"],theme:1},
+ {img:"12615999",tag:"Garden classic",n:"The Backyard Legend",inc:"Sunshine Garden · Science Circus · Velvet Crumb · candy cart, popcorn & face painting · Mini Feast buffet",note:"35 guests, Jungle theme",sel:{venue:1,show:1,cake:1,decor:0,photo:0,food:1},adds:["candy","popcorn","face"],theme:3}];
+const featured=[
+ {img:"7155951",n:"Sunshine Garden Venue",m:"Al Barari · garden venue",r:"4.9 ★ (167)",tags:["Booked 9× this week","Shaded lawn","Power on site"]},
+ {img:"7099916",n:"Magic by Karim",m:"Magician & party host",r:"4.9 ★ (340)",tags:["Booked 11× this week","Arabic + English","Ages 4–10"]},
+ {img:"7423766",n:"Velvet Crumb Cakes",m:"Custom celebration cakes",r:"4.9 ★ (265)",tags:["Booked 14× this week","Eggless options","Free delivery"]}];
+const testis=[
+ {q:"I booked Adam's entire 7th birthday during school pickup. Seven vendors, one payment. The face painter arrived before I did.",n:"Rania M.",w:"Arabian Ranches · mom of two",c:"#8E5E82"},
+ {q:"The cake lady I'd been chasing on WhatsApp for two weeks was right there, with prices, bookable. I nearly cried.",n:"Priya S.",w:"Dubai Hills · Hafla member since March",c:"#A98243"},
+ {q:"Our photographer cancelled the night before. Hafla had a replacement confirmed before I even woke up. That's the whole pitch, honestly.",n:"Aisha K.",w:"Jumeirah · 3 parties booked",c:"#5E8A76"}];
+const faqs=[
+ ["What happens if a vendor cancels or doesn't show?","Your money is held by Hafla until the party actually happens, so a no-show costs the vendor, not you. Our team confirms every vendor 48 hours and 3 hours before the party, and if anyone drops we rebook a replacement of equal or better rating at no extra cost — or refund that line item instantly."],
+ ["How are vendors vetted?","Every vendor is visited in person, must hold a valid UAE trade licence, and starts with a probation period of monitored bookings. Anyone who dips below 4.5★ or cancels twice is delisted. Reviews come only from verified, paid bookings — no friends-and-family padding."],
+ ["Can I change my booking after paying?","Yes — swap any vendor or change guest count up to 7 days before the party, with the price difference refunded or charged automatically. Date changes depend on vendor availability, which you can check live in the app."],
+ ["Do prices really include everything?","The price you see at checkout is final: delivery, setup, teardown, and VAT included. Vendors on Hafla agree to all-in pricing — the 'prices on DM' era ends here."],
+ ["When do vendors get paid?","The morning after your party, automatically — once delivery is confirmed. That's why great vendors love the platform and unreliable ones avoid it."]];
+
+/* ================= STATE ================= */
+let theme=0,guests=25,dateIx=0,areaIx=0;
+let sel={venue:1,show:0,cake:1,decor:0,photo:-1,food:-1};
+let adds={};
+
+/* ================= RENDER ================= */
+function chipRow(el,arr,cur,fn){$(el).innerHTML=arr.map((t,i)=>`<button class="chip ${i===cur?'on':''}" onclick="${fn}(${i})">${t}</button>`).join("")}
+function nextWeekends(){const out=[],d=new Date();let n=0;
+ while(out.length<4){d.setDate(d.getDate()+1);const day=d.getDay();
+  if(day===6||day===0){out.push(d.toLocaleDateString("en-AE",{weekday:"short",day:"numeric",month:"short"}))}}
+ return out}
+const dates=nextWeekends();
+function renderTop(){chipRow("themes",themes,theme,"setTheme");chipRow("dates",dates,dateIx,"setDate");chipRow("areas",areas,areaIx,"setArea")}
+function setTheme(i){theme=i;renderTop();renderReceipt()}
+function setDate(i){dateIx=i;renderTop();renderReceipt()}
+function setArea(i){areaIx=i;renderTop();renderReceipt()}
+
+function optPrice(o){return o.p+o.per*guests}
+function renderCats(){$("cats").innerHTML=cats.map((c,ci)=>`
+ <div class="catBlock">
+  <div class="catHead"><div class="bLabel" style="margin:0">${c.n}</div>
+   <span class="skip" onclick="skipCat(${ci})">${sel[c.k]===-1?"skipped — tap an option to add":"skip this"}</span></div>
+  <div class="optRow">${c.opts.map((o,oi)=>`
+   <div class="vopt ${sel[c.k]===oi?'on':''}" onclick="pick(${ci},${oi})" role="button" tabindex="0" onkeydown="if(event.key==='Enter')pick(${ci},${oi})">
+    <span class="check"></span>
+    <b>${o.n}</b>
+    <div class="meta"><span class="star">★ ${o.r}</span> (${o.rv}) · ${o.m}</div>
+    <div class="foot"><span class="pr">AED ${optPrice(o).toLocaleString()}</span><span class="hint">${o.per?"scales with guests":"fixed"}</span></div>
+   </div>`).join("")}
+  </div>
+ </div>`).join("")}
+function renderAddons(){$("addons").innerHTML=addons.map(a=>`
+ <div class="addon ${adds[a.k]?'on':''}" onclick="toggleAdd('${a.k}')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')toggleAdd('${a.k}')">
+  <span class="check"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-10"/></svg></span>
+  <div class="em">${a.e}</div><b>${a.n}</b>
+  <div class="pr">${a.p?`AED ${a.p}`:""}${a.p&&a.per?" + ":""}${a.per?`AED ${a.per}/guest`:""}</div>
+ </div>`).join("")}
+function pick(ci,oi){const k=cats[ci].k;sel[k]=sel[k]===oi?-1:oi;renderCats();renderReceipt()}
+function skipCat(ci){sel[cats[ci].k]=-1;renderCats();renderReceipt()}
+function toggleAdd(k){adds[k]=!adds[k];renderAddons();renderReceipt()}
+
+function lines(){const L=[];
+ cats.forEach(c=>{if(sel[c.k]>-1){const o=c.opts[sel[c.k]];L.push([`${c.n} · ${o.n}`,optPrice(o)])}});
+ addons.forEach(a=>{if(adds[a.k])L.push([`Extra · ${a.n}`,a.p+a.per*guests])});
+ return L}
+function total(){return lines().reduce((s,l)=>s+l[1],0)}
+function renderReceipt(){const L=lines(),t=total();
+ $("rMeta").textContent=`${themes[theme]} · ${dates[dateIx]} · ${areas[areaIx]}`;
+ $("rLines").innerHTML=L.length?L.map(l=>`<div class="rLine"><span>${l[0]}</span><b>AED ${l[1].toLocaleString()}</b></div>`).join("")
+  :`<div class="rLine empty">Pick vendors above — your receipt builds itself</div>`;
+ $("total").textContent="AED "+t.toLocaleString();
+ $("perGuest").innerHTML=t?`≈ AED ${Math.round(t/guests)} per guest<br>for ${guests} kids, all-in`:"";
+ $("bookBtn").style.opacity=t?1:.4;$("bookBtn").style.pointerEvents=t?"auto":"none"}
+$("guests").addEventListener("input",e=>{guests=+e.target.value;$("gNum").textContent=guests;renderCats();renderAddons();renderReceipt()});
+
+/* bundles */
+$("bunGrid").innerHTML=bundles.map((b,i)=>`
+ <article class="bun rev" style="transition-delay:${i*.09}s" onclick="loadBundle(${i})">
+  <div class="img"><img src="${px(b.img,700)}" alt="${b.n}" onerror="this.style.display='none'"><span class="pillTag hot">${b.tag}</span></div>
+  <div class="body"><h3>${b.n}</h3><p class="inc">${b.inc}</p>
+   <div class="row"><div class="pr" id="bunPr${i}"><small>${b.note}</small></div><span class="go">Customize →</span></div>
+  </div>
+ </article>`).join("");
+function bundleTotal(b){let t=0;cats.forEach(c=>{const oi=b.sel[c.k];if(oi>-1)t+=c.opts[oi].p+c.opts[oi].per*25});
+ b.adds.forEach(k=>{const a=addons.find(x=>x.k===k);t+=a.p+a.per*25});return t}
+bundles.forEach((b,i)=>{$("bunPr"+i).insertAdjacentHTML("afterbegin","AED "+bundleTotal(b).toLocaleString())});
+function loadBundle(i){const b=bundles[i];sel={...b.sel};adds={};b.adds.forEach(k=>adds[k]=true);theme=b.theme;
+ renderTop();renderCats();renderAddons();renderReceipt();
+ document.querySelector("#builder").scrollIntoView({behavior:"smooth"})}
+
+/* marquee */
+const gal=[["7099924","Party hats on"],["7155975","Cake o'clock"],["7600428","The whole squad"],["6651864","Horn section"],["7155969","Make a wish"],["12615999","Present time"]];
+$("mTrack").innerHTML=[...gal,...gal].map(g=>`<div class="mCap"><img src="${px(g[0],500)}" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"><span>${g[1]}</span></div>`).join("");
+
+/* featured vendors */
+$("venGrid").innerHTML=featured.map((v,i)=>`
+ <article class="ven rev" style="transition-delay:${i*.09}s">
+  <div class="img"><img src="${px(v.img,700)}" alt="${v.n}" loading="lazy" onerror="this.style.display='none'"></div>
+  <div class="body">
+   <h4>${v.n}<span class="vBadge"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-10"/></svg></span></h4>
+   <div class="meta">${v.m} · <span class="star">${v.r}</span></div>
+   <div class="stats">${v.tags.map((t,j)=>`<span class="pillTag ${j===0?'hot':''}">${t}</span>`).join("")}</div>
+  </div>
+ </article>`).join("");
+
+/* testimonials */
+$("tGrid").innerHTML=testis.map((t,i)=>`
+ <div class="tCard rev" style="transition-delay:${i*.09}s"><span class="mark">"</span>
+  <p class="q">${t.q}</p>
+  <div class="who"><div class="av" style="background:${t.c}">${t.n[0]}</div><div><b>${t.n}</b><small>${t.w}</small></div></div>
+ </div>`).join("");
+
+/* faq */
+$("faqList").innerHTML=faqs.map((f,i)=>`
+ <div class="qa rev"><button onclick="toggleQa(this)" aria-expanded="false">${f[0]}<span class="plus">+</span></button>
+  <div class="a"><p>${f[1]}</p></div></div>`).join("");
+function toggleQa(btn){const qa=btn.parentElement,a=qa.querySelector(".a"),open=qa.classList.toggle("open");
+ btn.setAttribute("aria-expanded",open);a.style.maxHeight=open?a.scrollHeight+"px":0}
+
+/* booking */
+function book(){const t=total();
+ $("builderBody").style.display="none";$("bookedState").classList.add("show");
+ $("bookedTitle").textContent=`${themes[theme]} party booked.`;
+ $("bookedSub").textContent=`AED ${t.toLocaleString()} for ${guests} guests on ${dates[dateIx]} in ${areas[areaIx]} — held safely until party day. Every vendor just received the same date, time and brief. No forwarding, no follow-ups.`;
+ burst();document.querySelector("#builder").scrollIntoView({behavior:"smooth"})}
+function resetBuilder(){$("builderBody").style.display="";$("bookedState").classList.remove("show")}
+function burst(){if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+ const cols=["#C43265","#A97C22","#1F8F66","#5B84B1","#D9A441","#FCFAF7"];
+ for(let i=0;i<80;i++){const p=document.createElement("div");p.className="pc";
+  p.style.left=Math.random()*100+"%";p.style.background=cols[i%6];
+  p.style.width=p.style.height=(6+Math.random()*7)+"px";
+  p.style.borderRadius=Math.random()>.5?"50%":"2px";
+  p.style.animationDuration=(1.8+Math.random()*1.8)+"s";
+  p.style.animationDelay=Math.random()*.5+"s";
+  $("burst").appendChild(p);setTimeout(()=>p.remove(),4200)}}
+
+/* ---------- AI designer (demo) ---------- */
+const themeMap=[[/princess|royal|crown|queen/i,0],[/hero|spider|marvel|batman|super/i,1],[/space|rocket|astro|planet|nasa/i,2],[/jungle|safari|animal|dino|zoo/i,3],[/unicorn|rainbow|pony/i,4],[/football|soccer|messi|ronaldo|sport/i,5],[/mermaid|sea|ocean|fish|under the sea|beach/i,6],[/gaming|minecraft|fortnite|roblox|video game/i,7]];
+const themeAdds=[["gifts","face"],["bounce","mascot"],["booth"],["face","popcorn"],["candy","face"],["popcorn"],["face","candy"],["booth"]];
+function aiFill(t){$("aiInput").value=t}
+function aiParse(t){
+ let th=null;for(const[m,i]of themeMap){if(m.test(t)){th=i;break}}
+ let g=null;const gm=t.match(/(\d{2})\s*(kids|guests|children|boys|girls|people)/i)||t.match(/around\s*(\d{2})\b/i);
+ if(gm)g=Math.min(80,Math.max(10,+gm[1]));
+ let b=null;const bm=t.match(/(\d{1,3})[.,]?(\d{3})\b/)||t.match(/(\d+(?:\.\d+)?)\s*k/i);
+ if(bm){b=bm[2]!==undefined?+(bm[1]+bm[2]):Math.round(parseFloat(bm[1])*1000)}
+ return{th,g,b}}
+function comboCost(s,a,g){let t=0;
+ cats.forEach(c=>{const oi=s[c.k];if(oi>-1){const o=c.opts[oi];t+=o.p+o.per*g}});
+ Object.keys(a).forEach(k=>{if(a[k]){const x=addons.find(z=>z.k===k);t+=x.p+x.per*g}});return t}
+function aiOptimize(b,g,th){
+ let s={venue:1,show:1,cake:1,decor:1,photo:1,food:1},a={};
+ (themeAdds[th]||[]).forEach(k=>a[k]=true);
+ if(!b)return{s,a};
+ const down=[["food",0],["photo",0],["decor",0],["cake",0],["show",0],["venue",0],["food",-1],["photo",-1],["decor",-1]];
+ for(const[k,v]of down){if(comboCost(s,a,g)<=b)break;s[k]=v}
+ if(comboCost(s,a,g)>b){for(const k of Object.keys(a)){if(comboCost(s,a,g)<=b)break;a[k]=false}}
+ const up=[["venue",2],["decor",2],["show",2],["cake",2],["photo",2],["food",2]];
+ for(const[k,v]of up){s[k]=v;if(comboCost(s,a,g)>b*0.97){s[k]=Math.min(1,v);if(comboCost(s,a,g)>b*0.97)continue}}
+ for(const[k,v]of down){if(comboCost(s,a,g)<=b)break;s[k]=v}
+ return{s,a}}
+function aiDesign(){const t=$("aiInput").value.trim();if(!t)return;
+ const out=$("aiOut");out.classList.add("show");
+ out.innerHTML='<span class="aiThinking">Designing your party <i></i><i></i><i></i></span>';
+ $("aiBtn").disabled=true;
+ setTimeout(()=>{const{th,g,b}=aiParse(t);
+  const T=th??Math.floor(Math.random()*themes.length),G=g||25;
+  const{s,a}=aiOptimize(b,G,T);
+  theme=T;guests=G;$("guests").value=G;$("gNum").textContent=G;
+  sel={...s};adds={...a};renderTop();renderCats();renderAddons();renderReceipt();
+  const tot=total();
+  out.innerHTML=`Done. <b>${themes[T]}</b> theme · <b>${G} guests</b>${b?` · fitted to <b>AED ${tot.toLocaleString()}</b> of your AED ${b.toLocaleString()} budget`:` · <b>AED ${tot.toLocaleString()}</b> all-in`}. Loaded below — swap anything you like.`;
+  $("aiBtn").disabled=false;
+  document.querySelector(".bCard").scrollIntoView({behavior:"smooth"});
+ },1400)}
+
+/* reveal */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.1});
+document.querySelectorAll(".rev").forEach(el=>io.observe(el));
+setTimeout(()=>document.querySelectorAll(".rev:not(.in)").forEach(el=>el.classList.add("in")),1500);
+
+renderTop();renderCats();renderAddons();renderReceipt();
+</script>
+</body>
+</html>
